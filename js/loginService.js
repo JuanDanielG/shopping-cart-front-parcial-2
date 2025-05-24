@@ -1,25 +1,30 @@
 document.getElementById('loginForm').addEventListener('submit', function(e){
     e.preventDefault()
-    const email = document.getElementById('email').value
+    const username = document.getElementById('username').value
     const password = document.getElementById('password').value
-    console.log('valores leidos del formulario', {email, password})
-    login(email, password)
+    console.log('valores leidos del formulario', {username, password})
+    login(username, password)
 })
 
-function login(email, password){
+function login(username, password){
     localStorage.removeItem('token')
     let message = ''
     let alertType = ''
-    const REQRES_ENDPOINT = 'https://reqres.in/api/login'
+    const REQRES_ENDPOINT = 'https://dummyjson.com/user/login'
+    
     fetch(REQRES_ENDPOINT, {
         method: 'POST',
         headers: {
             'Content-type': 'application/json',
             'x-api-key': 'reqres-free-v1'
         },
-        body: JSON.stringify({email, password})
+        body: JSON.stringify({ 
+            username: 'emilys',
+            password: 'emilyspass',
+            expiresInMins: 30 // optional, defaults to 60
+        })
     })
-    .then((response) =>{
+    .then((response) => {
         if(response.status === 200){
             alertType = 'success'
             message = 'Inicio de sesión exitoso'
@@ -27,10 +32,9 @@ function login(email, password){
             response.json().then((data) => {
                 localStorage.setItem('token', data.token)
             }) 
-            setTimeout(() =>{
+            setTimeout(() => {
                 location.href = 'admin/dashboard.html'
-            }, 2000)// 2000 ms = 2 segundos
-            
+            }, 2000) // 2000 ms = 2 segundos
         }
         else{
             alertType = 'danger'
@@ -38,15 +42,13 @@ function login(email, password){
             alertBuilder(alertType, message)
         }
         console.log('respuesta del servicio', response)
-        
     })
-    .catch((error) =>{
+    .catch((error) => {
         alertType = 'danger'
         message = 'Ocurrio un error inesperado'
         console.log('error en el servicio', error)
         alertBuilder(alertType, message)
     })
-
 }
 
 function alertBuilder(alertType, message){

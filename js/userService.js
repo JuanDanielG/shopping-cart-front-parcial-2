@@ -1,6 +1,6 @@
 function users(page){
     document.getElementById('cardHeader').innerHTML = '<h5>Listado de usuarios</h5>'
-    const REQRES_ENDPOINT = 'https://reqres.in/api/users?page='+page
+    const REQRES_ENDPOINT = 'https://dummyjson.com/users'+page
     fetch(REQRES_ENDPOINT, {
         method: 'GET',
         headers: {
@@ -41,7 +41,7 @@ function users(page){
                         <td>${user.last_name}</td>
                         <td><img src="${user.avatar}" class="img-thumbnail" alt="avatar del usuario"></td>
                         <td>
-                            <button type="button" class="btn btn-outline-info" onclick="getUser('${user.id}')">Ver</button>
+                            <button type="button" class="btn btn-outline-info" onclick="getUser('${user.id}')">Ver info.</button>
                         </td>
                     </tr>
                 `  
@@ -69,19 +69,19 @@ function users(page){
             document.getElementById('info').innerHTML = listUsers
         }
         else{
-            document.getElementById('info').innerHTML = 'No existen usuarios en la BD'
+            document.getElementById('info').innerHTML = 'No existen usuarios en la BD.'
         }
     })
 }
 
 function getUser(idUser){
-    const REQRES_ENDPOINT = 'https://reqres.in/api/users/'+idUser
+    const REQRES_ENDPOINT = 'https://dummyjson.com/users'+idUser
     fetch(REQRES_ENDPOINT, {
         method: 'GET',
         headers: {
-            'Content-type': 'application/json',
-            'x-api-key': 'reqres-free-v1'
-        }
+            'Authorization': 'Bearer /* YOUR_ACCESS_TOKEN_HERE */', // Pass JWT via Authorization header
+        },
+        credentials: 'include' // Include cookies (e.g., accessToken) in the request
     })
     .then((response) =>{
         return response.json().then(
@@ -100,7 +100,7 @@ function getUser(idUser){
         }
         else{
             document.getElementById('info').innerHTML = 
-                '<h3>No se encontro el usuario en la Api</h3>'
+                '<h3>No se encontró el usuario en la Api.</h3>'
         }
     })
 
@@ -113,22 +113,22 @@ function showModalUser(user){
       <div class="modal-dialog modal-sm">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Ver Usuario</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Ver Usuario.</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar."></button>
           </div>
           <div class="modal-body">
             <div class="card">
                 <img src="${user.avatar}" class="card-img-top" alt="Avatar del usuario">
                 <div class="card-body">
                     <h5 class="card-title">Información del usuario</h5>
-                    <p class="card-text">Correo: ${user.email}</p>
+                    <p class="card-text">Nombre de usuario: ${user.username}</p>
                     <p class="card-text">Nombre: ${user.first_name}</p>
                     <p class="card-text">Apellido: ${user.last_name}</p>
                 </div>
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar.</button>
           </div>
         </div>
       </div>
