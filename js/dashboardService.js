@@ -1,4 +1,3 @@
-
 tokenValidate()
 
 function logout(){
