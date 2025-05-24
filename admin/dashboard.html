@@ -33,6 +33,9 @@
                   <a class="nav-link" href="#products" onclick="products()">Productos</a>
                 </li>
                 <li class="nav-item">
+                  <a class="nav-link" href="#carts" onclick="getCarts()">Carrito</a>
+                </li>
+                <li class="nav-item">
                   <a class="nav-link" href="#logout" onclick="logout()">Salir</a>
                 </li>
               </ul>
@@ -62,12 +65,15 @@
     </div>
   </div>
   <div id="modalUser"></div>
+  <div id="showModal"></div>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
     crossorigin="anonymous"></script>
   <script src="../js/dashboardService.js"></script>
   <script src="../js/userService.js"></script>
   <script src="../js/productService.js"></script>
+  <script src="../js/cartsService.js"></script>
 </body>
 
 </html>
