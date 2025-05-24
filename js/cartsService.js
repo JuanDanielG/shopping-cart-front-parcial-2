@@ -6,10 +6,10 @@ function getCarts() {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
     })
-    .then(result => result.json())
-    .then(data => {
-        if (data.carts && data.carts.length > 0) {
-            let listCarts = `
+        .then(result => result.json())
+        .then(data => {
+            if (data.carts && data.carts.length > 0) {
+                let listCarts = `
                 <table class="table">
                     <thead>
                         <tr>
@@ -23,9 +23,8 @@ function getCarts() {
                     <tbody>
             `;
 
-            // Solo una fila por carrito
-            data.carts.forEach(cart => {
-                listCarts += `
+                data.carts.forEach(cart => {
+                    listCarts += `
                     <tr>
                         <td>${cart.id}</td>
                         <td>${cart.totalProducts}</td>
@@ -36,25 +35,25 @@ function getCarts() {
                         </td>
                     </tr>
                 `;
-            });
+                });
 
-            listCarts += `
+                listCarts += `
                     </tbody>
                 </table>
             `;
-            document.getElementById('info').innerHTML = listCarts;
-        } else {
-            document.getElementById('info').innerHTML = '<h3>No se encontró lista de compras</h3>';
-        }
-    })
-    .catch(err => {
-        console.error("Error al obtener la lista de carritos:", err);
-        document.getElementById('info').innerHTML = '<p>Error al cargar los datos.</p>';
-    });
+                document.getElementById('info').innerHTML = listCarts;
+            } else {
+                document.getElementById('info').innerHTML = '<h3>No se encontró lista de compras</h3>';
+            }
+        })
+        .catch(err => {
+            console.error("Error al obtener la lista de carritos:", err);
+            document.getElementById('info').innerHTML = '<p>Error al cargar los datos.</p>';
+        });
 }
 
 function showInfoCart(cartId) {
-    console.log("id:" + cartId);  // Aquí el console.log correctamente colocado
+    console.log("id:" + cartId);
     fetch(`https://dummyjson.com/carts/${cartId}`)
         .then(res => {
             if (!res.ok) throw new Error('Carrito no encontrado');
@@ -68,7 +67,7 @@ function showInfoCart(cartId) {
 }
 
 function showModalCart(cart) {
-    // Limpia el modal anterior si existe
+
     const modalContainer = document.getElementById('showModal');
     modalContainer.innerHTML = '';
 

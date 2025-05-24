@@ -1,28 +1,28 @@
-function users(page = ''){
+function users(page = '') {
     document.getElementById('cardHeader').innerHTML = '<h5>Listado de usuarios</h5>'
     document.getElementById('info').innerHTML = '<div class="text-center"><div class="spinner-border" role="status"><span class="visually-hidden">Cargando...</span></div></div>'
-    
+
     const REQRES_ENDPOINT = page ? `https://dummyjson.com/users?page=${page}` : 'https://dummyjson.com/users'
-    
+
     fetch(REQRES_ENDPOINT, {
         method: 'GET',
         headers: {
             'Content-type': 'application/json'
         }
     })
-    .then((response) =>{
-        return response.json().then(
-            data => {
-                return {
-                    status: response.status,
-                    info: data
+        .then((response) => {
+            return response.json().then(
+                data => {
+                    return {
+                        status: response.status,
+                        info: data
+                    }
                 }
-            }
-        )
-    })
-    .then((result) => {
-        if(result.status === 200){
-            let listUsers = `
+            )
+        })
+        .then((result) => {
+            if (result.status === 200) {
+                let listUsers = `
                 <table class="table table-striped">
                     <thead class="table-dark">
                         <tr>
@@ -37,9 +37,9 @@ function users(page = ''){
                     </thead>
                     <tbody>
             `
-            
-            result.info.users.forEach(user => {
-                listUsers = listUsers + `
+
+                result.info.users.forEach(user => {
+                    listUsers = listUsers + `
                     <tr>
                         <td>${user.id}</td>
                         <td>${user.firstName} ${user.lastName}</td>
@@ -51,10 +51,10 @@ function users(page = ''){
                             <button type="button" class="btn btn-outline-info btn-sm" onclick="getUser('${user.id}')">Ver info</button>
                         </td>
                     </tr>
-                `  
-            });
-            
-            listUsers = listUsers + `
+                `
+                });
+
+                listUsers = listUsers + `
                     </tbody>
                 </table>
                 <nav aria-label="Page navigation">
@@ -71,54 +71,54 @@ function users(page = ''){
                     </ul>
                 </nav>
             `
-            document.getElementById('info').innerHTML = listUsers
-        }
-        else{
-            document.getElementById('info').innerHTML = '<div class="alert alert-warning" role="alert"><h4>No existen usuarios en la BD.</h4></div>'
-        }
-    })
-    .catch((error) => {
-        console.error('Error:', error)
-        document.getElementById('info').innerHTML = '<div class="alert alert-danger" role="alert"><h4>Error al cargar los usuarios</h4></div>'
-    })
+                document.getElementById('info').innerHTML = listUsers
+            }
+            else {
+                document.getElementById('info').innerHTML = '<div class="alert alert-warning" role="alert"><h4>No existen usuarios en la BD.</h4></div>'
+            }
+        })
+        .catch((error) => {
+            console.error('Error:', error)
+            document.getElementById('info').innerHTML = '<div class="alert alert-danger" role="alert"><h4>Error al cargar los usuarios</h4></div>'
+        })
 }
 
-function getUser(idUser){
+function getUser(idUser) {
     const REQRES_ENDPOINT = `https://dummyjson.com/users/${idUser}`
-    
+
     fetch(REQRES_ENDPOINT, {
         method: 'GET',
         headers: {
             'Content-type': 'application/json'
         }
     })
-    .then((response) =>{
-        return response.json().then(
-            data => {
-                return {
-                    status: response.status,
-                    info: data
+        .then((response) => {
+            return response.json().then(
+                data => {
+                    return {
+                        status: response.status,
+                        info: data
+                    }
                 }
+            )
+        })
+        .then((result) => {
+            if (result.status === 200) {
+                const user = result.info
+                showModalUser(user)
             }
-        )
-    })
-    .then((result) =>{
-        if(result.status === 200){
-            const user = result.info
-            showModalUser(user)
-        }
-        else{
-            document.getElementById('info').innerHTML = 
-                '<div class="alert alert-danger" role="alert"><h4>No se encontró el usuario en la API.</h4></div>'
-        }
-    })
-    .catch((error) => {
-        console.error('Error:', error)
-        document.getElementById('info').innerHTML = '<div class="alert alert-danger" role="alert"><h4>Error al cargar el usuario</h4></div>'
-    })
+            else {
+                document.getElementById('info').innerHTML =
+                    '<div class="alert alert-danger" role="alert"><h4>No se encontró el usuario en la API.</h4></div>'
+            }
+        })
+        .catch((error) => {
+            console.error('Error:', error)
+            document.getElementById('info').innerHTML = '<div class="alert alert-danger" role="alert"><h4>Error al cargar el usuario</h4></div>'
+        })
 }
 
-function showModalUser(user){
+function showModalUser(user) {
     const modalUser = `
     <!-- Modal -->
     <div class="modal fade" id="showModalUser" tabindex="-1" aria-labelledby="modalUserLabel" aria-hidden="true">
@@ -162,7 +162,7 @@ function showModalUser(user){
     if (existingModal) {
         existingModal.remove()
     }
-    
+
     document.getElementById('showModal').innerHTML = modalUser
     const modal = new bootstrap.Modal(document.getElementById('showModalUser'))
     modal.show()
