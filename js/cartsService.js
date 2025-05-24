@@ -13,11 +13,11 @@ function getCarts() {
                 <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col">Cart Id</th>
-                            <th scope="col">Total Products</th>
-                            <th scope="col">Total Quantity</th>
-                            <th scope="col">Total Price</th>
-                            <th scope="col">Action</th>
+                            <th scope="col">Id Carro</th>
+                            <th scope="col">Productos Totales</th>
+                            <th scope="col">Cantidad total</th>
+                            <th scope="col">Precio total</th>
+                            <th scope="col">Acción</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -32,7 +32,7 @@ function getCarts() {
                         <td>${cart.totalQuantity}</td>
                         <td>$${cart.total.toFixed(2)}</td>
                         <td>
-                            <button type="button" class="btn btn-outline-primary" onclick="showInfoCart(${cart.id})">View</button>
+                            <button type="button" class="btn btn-outline-primary" onclick="showInfoCart(${cart.id})">Ver info</button>
                         </td>
                     </tr>
                 `;
@@ -80,8 +80,8 @@ function showModalCart(cart) {
                 <img src="${product.thumbnail}" alt="${product.title}" class="img-fluid me-3" style="max-width: 100px; max-height: 100px;">
                 <div>
                   <h6 class="card-title">${product.title}</h6>
-                  <p class="card-text mb-1">Price: $${product.price}</p>
-                  <p class="card-text mb-1">Quantity: ${product.quantity}</p>
+                  <p class="card-text mb-1">Precio: $${product.price}</p>
+                  <p class="card-text mb-1">Cantidad: ${product.quantity}</p>
                   <p class="card-text">Total: $${product.total}</p>
                 </div>
               </div>
@@ -94,20 +94,20 @@ function showModalCart(cart) {
           <div class="modal-dialog modal-lg">
             <div class="modal-content">
               <div class="modal-header">
-                <h1 class="modal-title fs-5" id="modalCartLabel">Cart ID: ${cart.id}</h1>
+                <h1 class="modal-title fs-5" id="modalCartLabel">ID Carro: ${cart.id}</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
                 <h5>User ID: ${cart.userId}</h5>
-                <p>Total Products: ${cart.totalProducts}</p>
-                <p>Total Quantity: ${cart.totalQuantity}</p>
+                <p>Total Productos: ${cart.totalProducts}</p>
+                <p>Total Cantidad: ${cart.totalQuantity}</p>
                 <p>Total: $${cart.total.toFixed(2)}</p>
-                <p>Discounted Total: $${cart.discountedTotal.toFixed(2)}</p>
+                <p>Descuento Total: $${cart.discountedTotal.toFixed(2)}</p>
                 <hr/>
                 ${productsHTML}
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar.</button>
               </div>
             </div>
           </div>
