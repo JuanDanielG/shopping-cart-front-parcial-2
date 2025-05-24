@@ -1,5 +1,5 @@
 function getCarts() {
-    document.getElementById('cardHeader').innerHTML = '<h3>Lista de Compras</h3>';
+    document.getElementById('cardHeader').innerHTML = '<h3 class="fw-bolder fs-2">Lista de Compras</h3>';
     document.getElementById('info').innerHTML = 'Cargando...';
 
     fetch("https://dummyjson.com/carts", {
@@ -93,11 +93,11 @@ function showModalCart(cart) {
           <div class="modal-dialog modal-lg">
             <div class="modal-content">
               <div class="modal-header">
-                <h1 class="modal-title fs-5" id="modalCartLabel">ID Carro: ${cart.id}</h1>
+                <h1 class="fw-bolder fs-2   modal-title fs-5" id="modalCartLabel">ID Carro: ${cart.id}</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                <h5>User ID: ${cart.userId}</h5>
+                <h5 class="fw-bold">User ID: ${cart.userId}</h5>
                 <p>Total Productos: ${cart.totalProducts}</p>
                 <p>Total Cantidad: ${cart.totalQuantity}</p>
                 <p>Total: $${cart.total.toFixed(2)}</p>
@@ -106,7 +106,7 @@ function showModalCart(cart) {
                 ${productsHTML}
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar.</button>
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cerrar.</button>
               </div>
             </div>
           </div>

@@ -1,5 +1,5 @@
 function users(page = '') {
-    document.getElementById('cardHeader').innerHTML = '<h5>Listado de usuarios</h5>'
+    document.getElementById('cardHeader').innerHTML = '<h5 class="fw-bolder fs-2">Listado de usuarios</h5>'
     document.getElementById('info').innerHTML = '<div class="text-center"><div class="spinner-border" role="status"><span class="visually-hidden">Cargando...</span></div></div>'
 
     const REQRES_ENDPOINT = page ? `https://dummyjson.com/users?page=${page}` : 'https://dummyjson.com/users'
@@ -60,13 +60,13 @@ function users(page = '') {
                 <nav aria-label="Page navigation">
                     <ul class="pagination justify-content-center">
                         <li class="page-item ${result.info.skip === 0 ? 'disabled' : ''}">
-                            <a class="page-link" href="#" onclick="users('${Math.max(1, (result.info.skip / result.info.limit))}')">Anterior</a>
+                            <a class="btn btn-outline-primary page-link" href="#" onclick="users('${Math.max(1, (result.info.skip / result.info.limit))}')">Anterior</a>
                         </li>
                         <li class="page-item active">
                             <span class="page-link">Página ${Math.floor(result.info.skip / result.info.limit) + 1}</span>
                         </li>
                         <li class="page-item ${result.info.skip + result.info.limit >= result.info.total ? 'disabled' : ''}">
-                            <a class="page-link" href="#" onclick="users('${Math.floor(result.info.skip / result.info.limit) + 2}')">Siguiente</a>
+                            <a class="btn btn-outline-primary page-link" href="#" onclick="users('${Math.floor(result.info.skip / result.info.limit) + 2}')">Siguiente</a>
                         </li>
                     </ul>
                 </nav>
@@ -125,13 +125,13 @@ function showModalUser(user) {
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="modalUserLabel">Información del Usuario</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            <h1 class=" fw-bolder fs-2 modal-title fs-5" id="modalUserLabel">Información del Usuario</h1>
+            <button type="button" class=" btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
           </div>
           <div class="modal-body">
             <div class="row">
-                <div class="col-md-4">
-                    <img src="${user.image}" class="img-fluid rounded" alt="Avatar del usuario">
+                <div class="col-md-4 text-center">
+                    <img src="${user.image}" class="img-fluid rounded mx-auto d-block" alt="Avatar del usuario">
                 </div>
                 <div class="col-md-8">
                     <div class="card h-100">

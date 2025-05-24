@@ -1,5 +1,5 @@
 async function getProducts() {
-    document.getElementById('cardHeader').innerHTML = '<h3>Lista de Productos</h3>';
+    document.getElementById('cardHeader').innerHTML = '<h3 class="fw-bolder fs-2">Lista de Productos</h3>';
     document.getElementById('info').innerHTML = '<p>Cargando productos...</p>';
 
     try {
@@ -33,7 +33,7 @@ async function getProducts() {
                         <td>${product.brand}</td>
                         <td><img src="${product.thumbnail}" class="img-thumbnail" style="max-width: 60px;" alt="Producto"></td>
                         <td>
-                            <button class="btn btn-outline-primary btn-sm" onclick="showInfoProduct(${product.id})">Ver</button>
+                            <button class="btn btn-outline-primary btn-sm" onclick="showInfoProduct(${product.id})">Ver info</button>
                         </td>
                     </tr>
                 `;
@@ -76,7 +76,7 @@ function showModalProduct(product) {
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">${product.title}</h5>
+                        <h5 class="fw-bolder fs-2 modal-title">${product.title}</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                     </div>
                     <div class="modal-body">
@@ -84,7 +84,7 @@ function showModalProduct(product) {
                             <div class="col-md-4">
                                 <img src="${product.thumbnail}" class="img-fluid rounded" alt="${product.title}">
                                 <p><strong>Stock:</strong> ${product.stock}</p>
-                                <p><strong>Rating:</strong> ${product.rating}</p>
+                                <p><strong>Valoración:</strong> ${product.rating}</p>
                                 <p><strong>Precio:</strong> $${product.price}</p>
                             </div>
                             <div class="col-md-8">
